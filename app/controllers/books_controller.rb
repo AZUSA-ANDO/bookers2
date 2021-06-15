@@ -17,8 +17,8 @@ def create
       flash[:notice] = "Book was successfully created."
       redirect_to book_path(@book)
     else
-      @user = current_user
-      @books = @user.books
+      @user = @book.user
+      @books = Book.all
       render :index
     end
 

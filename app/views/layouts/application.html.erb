@@ -7,7 +7,9 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
+</head>
+ <body>
+<header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
       <a class="navbar-brand" href="/"><span>Bookers</span></a>
@@ -17,35 +19,36 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
-          <li><%= link_to user_path(current_user.id),class:"fas fa-home nav-link text-light" do %>Home<% end %></li>
-          <li><a class="fas fa-users nav-link text-light" href="/users"> Users</a></li>
-          <li><a class="fas fa-book-open nav-link text-light" href="/books"> Books</a></li>
-          <li><a class="fas fa-sign-out-alt nav-link text-light" rel="nofollow" data-method="delete" href="/users/sign_out"> logout</a></li>
+          <%= link_to user_path(current_user.id),class:"fas fa-home nav-link text-light" do %>Home<% end %>
+          <a class="fas fa-users nav-link text-light" href="/users">Users</a>
+          <a class="fas fa-book-open nav-link text-light" href="/books">Books</a>
+          <a class="fas fa-sign-out-alt nav-link text-light" rel="nofollow" data-method="delete" href="/users/sign_out">logout</a>
            <% else %>
-          <li><a class="fas fa-home nav-link text-light" href="/"> Home</a></li>
-          <li><a class="fas fa-link nav-link text-light" href="/home/about"> About</a></li>
-          <li><a class="fas fa-user-plus nav-link text-light" href="/users/sign_up"> sign up</a></li>
-          <li><a class="fas fa-sign-in-alt nav-link text-light" href="/users/sign_in"> login</a></li>
+          <%= link_to "Home", root_path, class: "fas fa-home nav-link text-light" %>
+          <a class="fas fa-link nav-link text-light" href="/home/about">About</a>
+          <a class="fas fa-user-plus nav-link text-light" href="/users/sign_up">sign up</a>
+          <a class="fas fa-sign-in-alt nav-link text-light" href="/users/sign_in">login</a>
           <% end %>
         </ul>
       </div>
     </div>
   </nav>
+</header>
 
 
-  </head>
 
-  <body>
+
 
 
 
   <% flash.each do |key, value| %>
     <%= content_tag(:div, value, class: "#{key}") %>
   <% end %>
+  <main>
 
     <%= yield %>
-  </body>
-</html>
+    </main>
+
 
 <footer>
   <div class="container mt-5">
@@ -56,5 +59,8 @@
     </div>
   </div>
 </footer>
+
+  </body>
+</html>
 
 
